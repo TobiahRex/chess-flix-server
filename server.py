@@ -4,7 +4,7 @@ from stockfish import Stockfish
 
 app = Flask(__name__)
 CORS(app, origins=['http://localhost:3000'], allow_headers='Content-Type')
-stockfish = Stockfish(path="/usr/local/bin/stockfish")
+stockfish = Stockfish(path="/opt/homebrew/bin/stockfish")
 
 
 @app.route('/', methods=['GET'])
