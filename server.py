@@ -4,7 +4,30 @@ from stockfish import Stockfish
 
 app = Flask(__name__)
 CORS(app, origins=['http://localhost:3000'], allow_headers='Content-Type')
-stockfish = Stockfish(path="/opt/homebrew/bin/stockfish")
+
+stockfish = None
+
+
+def getStockfish():
+    global stockfish
+    if not stockfish:
+        stockfish = Stockfish(path='/opt/homebrew/bin/stockfish')
+        stockfish.update_engine_parameters({
+            'Hash': 2048,
+            'Threads': 4,
+            'Minimum Thinking Time': 10,
+        })
+    return stockfish
+
+
+def resetStockfish():
+    print('wtf?')
+    global stockfish
+    stockfish = None
+    getStockfish()
+
+
+stockfish = getStockfish()
 
 
 @app.route('/', methods=['GET'])
@@ -12,9 +35,33 @@ def test_server():
     return 'Server is running'
 
 
+@app.route('/reset', methods=['POST'])
+def reset():
+    resetStockfish()
+    return jsonify({'message': 'Stockfish reset'})
+
+
+@app.route('/game-evals', methods=['POST'])
+def calculate_game_evals():
+    try:
+        stockfish = getStockfish()
+        req = request.json
+        stockfish.set_fen_position(req.get('fen'))
+        evaluations = []
+        for move in req.get('moves'):
+            stockfish.make_moves_from_current_position([move])
+            evaluations.append(stockfish.get_evaluation().get('value'))
+        response = {'evaluations': evaluations}
+        return jsonify(response)
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'Something went wrong'})
+
+
 @app.route('/position-eval', methods=['POST'])
 def calculate_position_eval():
     try:
+        stockfish = getStockfish()
         fen = request.json.get('fen')
         stockfish.set_fen_position(fen)
         evaluation = stockfish.get_evaluation()
@@ -22,12 +69,13 @@ def calculate_position_eval():
         return jsonify(response)
     except Exception as e:
         print(e)
-        return jsonify({'error': 'Something went wrong'})
+        return jsonify({'error': 'Something went wrong', evaluation: 0})
 
 
 @app.route('/previews', methods=['POST'])
 def calculate_previews():
     try:
+        stockfish = getStockfish()
         fen = request.json['fen']
         previewCount = int(request.json['previewCount'])
         depth = int(request.json['depth'])
