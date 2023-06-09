@@ -4,13 +4,27 @@ from stockfish import Stockfish
 
 app = Flask(__name__)
 CORS(app, origins=['http://localhost:3000'], allow_headers='Content-Type')
-stockfish = Stockfish(path="/opt/homebrew/bin/stockfish")
+stockfish = Stockfish(path="/usr/local/bin/stockfish")
 
 
 @app.route('/', methods=['GET'])
 def test_server():
     return 'Server is running'
 
+@app.route('/game-evals', methods=['POST'])
+def calculate_game_evals():
+    try:
+        req = request.json
+        stockfish.set_fen_position(req.get('fen'))
+        evaluations = []
+        for move in req.get('moves'):
+            stockfish.make_moves_from_current_position([move])
+            evaluations.append(stockfish.get_evaluation().get('value'))
+        response = {'evaluations': evaluations}
+        return jsonify(response)
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'Something went wrong'})
 
 @app.route('/position-eval', methods=['POST'])
 def calculate_position_eval():
