@@ -11,7 +11,7 @@ stockfish = None
 def getStockfish():
     global stockfish
     if not stockfish:
-        stockfish = Stockfish(path='/opt/homebrew/bin/stockfish')
+        stockfish = Stockfish(path='/usr/local/bin/stockfish')
         stockfish.update_engine_parameters({
             'Hash': 2048,
             'Threads': 4,
@@ -34,6 +34,20 @@ stockfish = getStockfish()
 def test_server():
     return 'Server is running'
 
+@app.route('/game-evals', methods=['POST'])
+def calculate_game_evals():
+    try:
+        req = request.json
+        stockfish.set_fen_position(req.get('fen'))
+        evaluations = []
+        for move in req.get('moves'):
+            stockfish.make_moves_from_current_position([move])
+            evaluations.append(stockfish.get_evaluation().get('value'))
+        response = {'evaluations': evaluations}
+        return jsonify(response)
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'Something went wrong'})
 
 @app.route('/reset', methods=['POST'])
 def reset():
