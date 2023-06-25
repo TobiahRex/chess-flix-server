@@ -10,7 +10,43 @@
       "request": "launch",
       "program": "${file}",
       "console": "integratedTerminal",
-      "justMyCode": true
+      "justMyCode": true,
+      "env": {
+        "PYTHONPATH": "/Users/tobiahrex/code/me/chess-flix-server"
+      }
+    },
+    {
+      "name": "W.Mac: Radar Svc",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/chessflix/services/radar_service.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "PYTHONPATH": "/Users/trex/code/me/chess-flix-server"
+      }
+    },
+    {
+      "name": "Air: Radar Svc",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/chessflix/services/radar_service.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "PYTHONPATH": "/Users/tobiahrex/code/me/chess-flix-server"
+      }
+    },
+    {
+      "name": "Test: ChessDotCom Svcs",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/chessflix/services/chess_dot_com_service.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "PYTHONPATH": "/Users/tobiahrex/code/me/chess-flix-server"
+      }
     },
     {
       "name": "Chess-Flix-Server",
@@ -18,7 +54,7 @@
       "request": "launch",
       "module": "flask",
       "env": {
-        "FLASK_APP": "server.py",
+        "FLASK_APP": "chessflix/server.py",
         "FLASK_ENV": "development"
       },
       "args": [

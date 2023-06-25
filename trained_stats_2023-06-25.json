@@ -1,0 +1,97 @@
+{
+    "username": "MagnusCarlsen",
+    "game_count": 100,
+    "trained_stats": {
+        "space": {
+            "std_dev": 7.093828581778197,
+            "mean": 31.15755603759942,
+            "mode": 35,
+            "max": 48,
+            "min": 5
+        },
+        "piece_mobility": {
+            "std_dev": 1.6488946946594139,
+            "mean": 5.064477791033984,
+            "mode": 5.0064,
+            "max": 8.9913,
+            "min": 0.8005
+        },
+        "pawn_structure_health": {
+            "std_dev": 1.6090504410978665,
+            "mean": 5.119204070860448,
+            "mode": 5.4054,
+            "max": 7.7465,
+            "min": 0.7232
+        },
+        "king_safety": {
+            "std_dev": 4.679570812329619,
+            "mean": 2.289370932754881,
+            "mode": 0,
+            "max": 48.5,
+            "min": 0
+        },
+        "attacked_pieces": {
+            "std_dev": 1.6647564449633339,
+            "mean": 5.003414840925524,
+            "mode": 3.9704,
+            "max": 21.206,
+            "min": 3.9704
+        },
+        "tactical_opps": {
+            "std_dev": 1.6409174552238694,
+            "mean": 4.995968709327549,
+            "mode": 2.7136,
+            "max": 12.8533,
+            "min": 2.6057
+        },
+        "material_balance": {
+            "std_dev": 11.817840037941131,
+            "mean": 24.870354302241505,
+            "mode": 39,
+            "max": 39,
+            "min": 0
+        },
+        "central_control": {
+            "std_dev": 6.712585555608747,
+            "mean": 8.68324295010846,
+            "mode": 0,
+            "max": 43.5,
+            "min": 0
+        },
+        "kingside_attack": {
+            "std_dev": 6.260443964578518,
+            "mean": 3.483893709327549,
+            "mode": 0,
+            "max": 56,
+            "min": 0
+        },
+        "queenside_attack": {
+            "std_dev": 7.979901893137599,
+            "mean": 4.755621836587129,
+            "mode": 0,
+            "max": 73,
+            "min": 0
+        },
+        "strong_threats": {
+            "std_dev": 1.2718684277755004,
+            "mean": 1.091522053506869,
+            "mode": 0,
+            "max": 11.5,
+            "min": 0
+        },
+        "strong_tactical_opportunities": {
+            "std_dev": 0.8401391427541904,
+            "mean": 0.32167389732465657,
+            "mode": 0,
+            "max": 18,
+            "min": 0
+        },
+        "checks_captures_threats": {
+            "std_dev": 0.3364349702812146,
+            "mean": 0.9817425885755604,
+            "mode": 0.5,
+            "max": 2.8666666666666667,
+            "min": 0.0
+        }
+    }
+}
