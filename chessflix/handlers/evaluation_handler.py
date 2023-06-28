@@ -9,7 +9,7 @@ class EvaluationHandler:
     def build(stockfish_service):
         radar_service = RadarService.build(
             stockfish_service,
-            stats_file='trained_stats_MagnusCarlsen_1000_2023-06-26.json',
+            stats_file='trained_stats_MagnusCarlsen_1000_2023-06-27.json',
             normalize_scores=True)
         return EvaluationHandler(
             stockfish_service=stockfish_service,

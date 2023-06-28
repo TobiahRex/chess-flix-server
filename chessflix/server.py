@@ -32,7 +32,7 @@ def calculate_game_evals():
         fen = req.get('fen')
         moves = req.get('moves')
         payload = eval_handler.calculate_game_evaluations(fen, moves)
-        print(payload)
+        return jsonify(payload)
     except Exception as e:
         print(e)
         return jsonify({'error': 'Something went wrong'})

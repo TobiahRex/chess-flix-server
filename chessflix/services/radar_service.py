@@ -861,7 +861,7 @@ if __name__ == '__main__':
             path='/usr/local/bin/stockfish')
     radar = RadarService.build(
         stockfish_service,
-        stats_file='trained_stats_MagnusCarlsen_1000_2023-06-26.json',
+        stats_file='trained_stats_MagnusCarlsen_1000_2023-06-27.json',
         normalize_scores=False
     )
     # create_radar_plot(features_white, features_black)
